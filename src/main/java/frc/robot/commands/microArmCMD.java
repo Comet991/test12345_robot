@@ -4,23 +4,20 @@
 
 package frc.robot.commands;
 
-import frc.robot.subsystems.DriveSub;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.CommandBase;
+import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
+import frc.robot.subsystems.IntakeSubsystem;
 
-/** An example command that uses an example subsystem. */
-public class Drive extends CommandBase {
-  private final DriveSub m_subsystem;
-  private final XboxController testController;
+public class microArmCMD extends CommandBase {
+private IntakeSubsystem m_subsystem;
+private final XboxController testController;
 
-  /**
-   * Creates a new ExampleCommand.
-   *
-   * @param subsystem The subsystem used by this command.
-   */
-  public Drive(DriveSub subsystem, XboxController test) {
-    m_subsystem = subsystem;
-    testController = test;
+  /** Creates a new microArmCMD. */
+  public microArmCMD(IntakeSubsystem subsystem, XboxController m_XboxControler) {
+    // Use addRequirements() here to declare subsystem dependencies.
+     m_subsystem = subsystem;
+     testController = m_XboxControler;
     // Use addRequirements() here to declare subsystem dependencies.
     addRequirements(subsystem);
   }
@@ -32,16 +29,18 @@ public class Drive extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    m_subsystem.arcadeDrive(testController.getRightTriggerAxis()*0.4 + -testController.getLeftTriggerAxis()*0.4, -testController.getLeftX()*0.4);
+    
+    if (testController.getPOV() == 0){
+      m_subsystem.addPosition(2.0);
+    }
+
+    else if (testController.getPOV() == 180) {m_subsystem.minusPosition(2.0); }
+      
   }
 
   // Called once the command ends or is interrupted.
   @Override
-  public void end(boolean interrupted) {
-
-    m_subsystem.arcadeDrive(0, 0);
-
-  }
+  public void end(boolean interrupted) {}
 
   // Returns true when the command should end.
   @Override

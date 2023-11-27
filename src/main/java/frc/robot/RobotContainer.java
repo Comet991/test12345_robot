@@ -5,11 +5,13 @@
 package frc.robot;
 
 import frc.robot.commands.Drive;
+import frc.robot.commands.microArmCMD;
 import frc.robot.commands.moveArmDown;
 import frc.robot.commands.moveArmUp;
 import frc.robot.subsystems.DriveSub;
 import frc.robot.subsystems.IntakeSubsystem;
 import frc.robot.subsystems.moveArmSub;
+import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import edu.wpi.first.wpilibj2.command.button.Trigger;
@@ -24,15 +26,16 @@ public class RobotContainer {
   // The robot's subsystems and commands are defined here...
 
   private final CommandXboxController m_driverController =
-      new CommandXboxController(0);
-
+      new CommandXboxController(1);
+  private final XboxController m_XboxControler = new XboxController(0);
   
   private final DriveSub m_shootballsub = new DriveSub();
-  // private final Drive m_ShootBallCmd = new Drive(m_shootballsub, m_driverController);
+  //private final Drive m_ShootBallCmd = new Drive(m_shootballsub, m_driverController);
 
   private final IntakeSubsystem intake = new IntakeSubsystem();
   private final moveArmUp m_moveArmUpCmd = new moveArmUp(intake);
   private final moveArmDown m_moveArmDownCmd = new moveArmDown(intake);
+  private final microArmCMD m_MicroArmCMD = new microArmCMD(intake, m_XboxControler);
 
   // Replace with CommandPS4Controller or CommandJoystick if needed
   
@@ -56,6 +59,7 @@ public class RobotContainer {
   private void configureBindings() {
     m_driverController.a().onTrue(m_moveArmUpCmd);
     m_driverController.b().onTrue(m_moveArmDownCmd);
+    intake.setDefaultCommand(m_MicroArmCMD);
   }
 
   /**

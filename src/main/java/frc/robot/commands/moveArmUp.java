@@ -29,7 +29,7 @@ public class moveArmUp extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    m_subsystem.setTargetPosition_deg(IntakeSubsystem.UP_POSITION_DEG);
+    m_subsystem.setTargetPosition_deg(115);
   }
 
   // Called once the command ends or is interrupted.

@@ -24,7 +24,7 @@ public class DriveSub extends SubsystemBase {
   private CANSparkMax m_leftBack = new CANSparkMax(Constants.kLeftMotor2Port, MotorType.kBrushless);
   private CANSparkMax m_rightFront = new CANSparkMax(Constants.kRightMotor1Port, MotorType.kBrushless);
   private CANSparkMax m_rightBack = new CANSparkMax(Constants.kRightMotor2Port, MotorType.kBrushless);
-  DifferentialDriveOdometry m_odometry = new DifferentialDriveOdometry(null, m_leftFront.getEncoder(), 0);
+  //DifferentialDriveOdometry m_odometry = new DifferentialDriveOdometry(null, m_leftFront.getEncoder(), 0);
   
 
   private MotorControllerGroup m_left;

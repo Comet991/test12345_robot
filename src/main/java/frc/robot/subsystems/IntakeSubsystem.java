@@ -70,6 +70,8 @@ public class IntakeSubsystem extends SubsystemBase {
 
   @Override
   public void periodic() {
+
+    SmartDashboard.putNumber("Current POS", m_currentPosition_deg);
    
     double offset_deg = m_currentPosition_deg - m_targetPosition_deg;
     double delta_deg = 0.0;
@@ -188,5 +190,13 @@ public void setPosition_deg(double position) {
 
   public void setTargetPosition_deg(double new_position){
     m_targetPosition_deg = new_position;
+  }
+
+  public void addPosition(double degree){
+    m_targetPosition_deg += degree;
+  }
+
+  public void minusPosition(double degree){
+    m_targetPosition_deg -= degree;
   }
 }
