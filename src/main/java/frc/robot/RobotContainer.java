@@ -4,10 +4,7 @@
 
 package frc.robot;
 
-import frc.robot.commands.Drive;
-import frc.robot.commands.microArmCMD;
-import frc.robot.commands.moveArmDown;
-import frc.robot.commands.moveArmUp;
+import frc.robot.commands.*;
 import frc.robot.subsystems.DriveSub;
 import frc.robot.subsystems.IntakeSubsystem;
 import frc.robot.subsystems.moveArmSub;
@@ -36,6 +33,7 @@ public class RobotContainer {
   private final moveArmUp m_moveArmUpCmd = new moveArmUp(intake);
   private final moveArmDown m_moveArmDownCmd = new moveArmDown(intake);
   private final microArmCMD m_MicroArmCMD = new microArmCMD(intake, m_XboxControler);
+  public final Command m_autoMoveArm = new AutoMoveArm(intake);
 
   // Replace with CommandPS4Controller or CommandJoystick if needed
   
@@ -45,6 +43,7 @@ public class RobotContainer {
     // m_shootballsub.setDefaultCommand(m_ShootBallCmd);
     // Configure the trigger bindings
     configureBindings();
+
   }
 
   /**
