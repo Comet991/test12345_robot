@@ -22,14 +22,15 @@ public class AutonomousTest extends SequentialCommandGroup {
     driveSub = m_drive;
     // Add your commands in the addCommands() call, e.g.
     // addCommands(new FooCommand(), new BarCommand());
-    addCommands(new InstantCommand(() -> driveSub.arcadeDrive(0.1, 0.1)),
-    new WaitCommand(1.0),
+    addCommands(
+    new InstantCommand(() -> driveSub.arcadeDrive(0.1, 0.1)),
+     new WaitCommand(1.0),
      new InstantCommand(() -> driveSub.arcadeDrive(0, 0)),
      new InstantCommand(() -> intake.setTargetPosition_deg(15)),
      new WaitCommand(3.0),
      new InstantCommand(() -> intake.setTargetPosition_deg(45)),
      new InstantCommand(() -> driveSub.arcadeDrive(0, 0.1)),
-     new WaitCommand(8.0),
+     new WaitCommand(4.0),
      new InstantCommand(() -> driveSub.arcadeDrive(0, 0))
      /*new InstantCommand(() -> driveSub.arcadeDrive(1, 1)),
      new InstantCommand(() -> driveSub.arcadeDrive(1, 1)),
